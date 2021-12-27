@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap"
+      rel="stylesheet"
+    />
+    <title>Calculator</title>
+  </head>
+  <style>
+    body {
+      font-family: "Baloo Bhaina 2", cursive;
+    }
+    .form {
+      display: flex;
+    }
+    h4 {
+      margin-top: 45px;
+    }
+    .section {
+      padding: 20px;
+    }
+    #operators {
+      margin-top: 24px;
+    }
+    .output {
+      width: 200px;
+      height: 20px;
+      text-rendering: auto;
+      color: -internal-light-dark(black, white);
+
+      display: inline-block;
+
+      background-color: -internal-light-dark(
+        rgb(255, 255, 255),
+        rgb(59, 59, 59)
+      );
+      cursor: text;
+      font: 400 13.3333px Arial;
+      padding: 1px 2px;
+      border-width: 2px;
+      border-style: inset;
+      border-color: -internal-light-dark(
+        rgb(118, 118, 118),
+        rgb(133, 133, 133)
+      );
+      border-image: initial;
+    }
+    #submit {
+      margin-top: 20px;
+      padding: 20px;
+      height: 20px;
+      width: 100px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <form class="form">
+        <div class="section">
+          <label>First value:</label>
+          <br />
+          <input type="number" id="fnum" />
+        </div>
+        <div class="section">
+          <select id="operators">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+          </select>
+        </div>
+        <div class="section">
+          <label>Second value:</label>
+          <br />
+          <input type="number" id="snum" />
+        </div>
+
+        <button class="addon"><b>+</b></button>
+        <input type="submit" id="submit" />
+        
+        
+      </form>
+      <label>Output:</label>
+      <br />
+      <div class="output"></div>
+    </div>
+  </body>
+  <script src="./calculator.js"></script>
+</html>

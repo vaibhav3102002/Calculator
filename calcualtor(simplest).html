@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcualtor</title>
+</head>
+<style>
+    
+    .output{
+        width: 200px;
+      height: 20px;
+      text-rendering: auto;
+      color: -internal-light-dark(black, white);
+
+      display: inline-block;
+
+      background-color: -internal-light-dark(
+        rgb(255, 255, 255),
+        rgb(59, 59, 59)
+      );
+      cursor: text;
+      font: 400 13.3333px Arial;
+      padding: 1px 2px;
+      border-width: 2px;
+      border-style: inset;
+      border-color: -internal-light-dark(
+        rgb(118, 118, 118),
+        rgb(133, 133, 133)
+      );
+      border-image: initial;
+    
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="box">
+            <input type="text" class="input">
+            
+
+        </div>
+        <br>
+        <button class="btn">submit</button>
+        <br>
+        <div class="output">
+            
+        </div>
+    </div>
+    
+</body>
+<script>
+    const submit=document.querySelector(".btn")
+    const input=document.querySelector(".input")
+    const output=document.querySelector(".output")
+    submit.addEventListener("click",function(){
+        output.textContent=eval(input.value)
+              
+    })
+
+</script>
+</html>

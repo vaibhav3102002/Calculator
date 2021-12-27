@@ -1,0 +1,226 @@
+<!-- Hi ;) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <meta name="description" content="This is the best calculator you will ever see because its made by me :D">
+
+    <title>Calculator</title>
+  </head>
+ <style> 
+      body{
+        font-family:Arial, Helvetica, sans-serif;
+        
+      }
+   
+    .form {
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      align-items: center;
+      justify-items: center;
+    }
+    .tcontainer{
+      display: flex;
+    }
+        
+    .section {
+      padding: 20px;
+    }
+    #operators {
+      margin-top: 24px;
+    }
+    .output {
+      width: 200px;
+      height: 20px;
+      text-rendering: auto;
+      color: -internal-light-dark(black, white);
+
+      display: inline-block;
+
+      background-color: -internal-light-dark(
+        rgb(255, 255, 255),
+        rgb(59, 59, 59)
+      );
+      cursor: text;
+      font: 400 13.3333px Arial;
+      padding: 1px 2px;
+      border-width: 2px;
+      border-style: inset;
+      border-color: -internal-light-dark(
+        rgb(118, 118, 118),
+        rgb(133, 133, 133)
+      );
+      border-image: initial;
+    }
+    #submit {
+      margin-top: 7px;
+      padding: 15px 30px;
+      height: 20px;
+      width: 100px;
+      border: 2px solid black;
+      border-radius: 20px;
+      font-weight: bolder;
+      }
+    #submit:hover {
+      background-color: rgb(214, 211, 211);
+      cursor: pointer;
+      
+      }
+      .btn{
+        padding: 7px 30px;
+        border: 2px solid black;
+        border-radius: 20px;
+
+      }
+      .btn:hover{
+        background-color: rgb(214, 211, 211);
+        cursor: pointer;
+      }
+      .otbox{
+       margin-top: 10px;
+      }
+      .box{
+        display: block;
+        margin: auto;
+      }
+      @media screen and (max-width:450px) {
+        .form{
+          display:grid;
+          grid-template-columns: repeat(1,1fr);
+        } 
+      }
+  </style>
+  <body>  
+    <div class="container">
+      <form class="form">
+        <div class="section">
+          <label for="1num">1 value:</label>
+          <br />
+          <input type="number" id="1num" class="input"name="1num" />
+        </div>
+        <!-- <div class="2container">
+          <div class="section">
+            <select id="operators">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+          </div>
+          <div class="section">
+            <label>Second value:</label>
+            <br />
+            <input type="number" id="snum" />
+          </div> -->
+        </div>
+        <div class="box">
+          <button class="addon btn"><b>+</b></button>
+        <button class="remove btn"><strong>-</strong></button>
+        <br>
+        <input type="submit" id="submit" />
+      </form>
+      <br>
+      <div class="otbox"><label>Output:</label>
+        <br />
+        <div class="output"></div></div>
+        </div>
+      
+    </div>
+    
+    
+  </body>
+  <!-- <script src="./calculator2.js"></script> -->
+  <script>
+ //===========querySelectors==================
+const submit = document.querySelector("#submit")
+const output = document.querySelector(".output")
+const addon = document.querySelector('.addon')
+const form = document.querySelector(".form")
+const remove = document.querySelector(".remove")
+
+
+//=============EventListners============================
+window.addEventListener("DOMContentLoaded", function () {
+  display(2);//function defined below
+})
+
+var value = 2;
+// adds another div
+addon.addEventListener("click", function (e) {
+  e.preventDefault()
+  value++;
+  display(value);
+})
+//removes last div
+remove.addEventListener("click", function (g) {
+  g.preventDefault()
+  const list = document.querySelectorAll(".tcontainer")
+  if (list.length > 1) {
+    const element = list[list.length - 1];
+    form.removeChild(element)
+    value = list.length;
+  }
+})
+// calculating...
+submit.addEventListener("click", function (e) {
+  e.preventDefault()
+  //collects all the operators in array
+  const operator = document.querySelectorAll("#operators")
+  const oplist = []
+  operator.forEach(function (p) {
+    oplist.push(p.value)
+  })
+//collect all the operands in the array
+  const input = document.querySelectorAll(".input")
+  const inlist = []
+  input.forEach(function (g) {
+    (inlist.push(g.value))
+  })
+  //algorithm that will take one element from oprands list and another from operator list and append them in new list
+  let odd = 0;
+  let even = 0;
+  const list = [];
+  for (var i = 0; i < (inlist.length + oplist.length); i++) {
+    if (i % 2 === 0) {
+      list.push(inlist[even]);
+      even++;
+    }
+    else {
+      list.push(oplist[odd])
+      odd++;
+    }
+
+  }
+  //real calculation
+  output.textContent = eval(list.join(""))
+
+
+})
+// =======================function=======================
+
+//function for creating new element 
+display = (x) => {
+  let element = document.createElement("div");
+
+  element.classList.add("tcontainer")
+  element.innerHTML = ` <div class="section">
+    <select id="operators">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+  </div>
+  <div class="section">
+    <label for="${x}num">${x} value:</label>
+    <br />
+    <input type="number" id="${x}num" class="input" name="${x}num" />
+  </div>`
+
+  form.appendChild(element)
+
+}
+  </script>
+</html>
